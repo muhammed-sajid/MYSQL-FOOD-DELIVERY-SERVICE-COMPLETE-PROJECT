@@ -203,5 +203,19 @@ SELECT Delivery_id,DATE_FORMAT(Orders_date, '%d/%m/%Y') AS FORMATTED_DATE FROM D
 ![image](https://github.com/user-attachments/assets/cc01e4c8-f05c-4c10-9f76-b96aeb6d9c72)
 
 
+## Use a subquery to find customers with more than 1 order
+SELECT Customer_id,First_name,Last_name FROM Customers
+WHERE Customer_id IN 
+( SELECT Customer_id FROM Orders GROUP BY  Customer_id HAVING COUNT(Orders_id) > 1 );
+![image](https://github.com/user-attachments/assets/11c8c485-d5ab-46c7-90da-f04469562f61)
 
+## Create a view that shows the top 3 highest spending customers
+CREATE VIEW TopSpendingcustomers AS
+SELECT Customers.Customer_id,Customers.First_name,Customers.Last_name, SUM(Orders.Total_price) As Total_Spend 
+FROM Customers JOIN  Orders ON Customers.Customer_id = Orders.Customer_id
+GROUP BY Customers.Customer_id,Customers.First_name,Customers.Last_name
+ORDER BY Total_Spend DESC LIMIT 3;
+
+SELECT * FROM TopSpendingcustomers;
+![image](https://github.com/user-attachments/assets/f89ae2c6-6a5c-4fbd-8270-877507ec1b1b)
 
