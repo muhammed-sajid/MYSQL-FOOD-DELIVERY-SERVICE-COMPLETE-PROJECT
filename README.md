@@ -324,7 +324,6 @@ SELECT SUM(Order_Item.Quantity * Menu_Item.Price)
 FROM Order_Item JOIN Menu_Item ON Order_Item.Item_Id = Menu_Item.Item_id WHERE Order_Item.Orders_id='OR012';
 
 DELIMITER $$
-
 CREATE TRIGGER UpdatetTotalPrice
 AFTER INSERT ON  Order_Item FOR EACH ROW 
 BEGIN
@@ -338,7 +337,6 @@ BEGIN
      SET Total_price = My_Total 
      WHERE Orders_id = New.Orders_id;
 END $$
-
 DELIMITER ; 
 
 
