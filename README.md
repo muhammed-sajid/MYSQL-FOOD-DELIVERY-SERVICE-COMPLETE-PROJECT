@@ -194,10 +194,13 @@ SELECT UPPER(FIRST_NAME) AS FIRSTNAME, UPPER(LAST_NAME)AS LASTNAME FROM CUSTOMER
 SELECT Delivery_id , DATEDIFF(Delivery_date, Orders_date) AS Duration_in_days FROM Deliveries1;
 ![image](https://github.com/user-attachments/assets/0d1eb3ae-7a0e-44da-b8a0-55447918897c)
 
-#TIMESTAMPDIFF()
+# TIMESTAMPDIFF()
 SELECT Delivery_id,TIMESTAMPDIFF(HOUR, Orders_date, Delivery_date) AS Duration_in_Hours FROM Deliveries1;
 ![image](https://github.com/user-attachments/assets/f091dced-9d8d-4cdc-a89d-e2c869b6943e)
 
+# DATEFORMAT()
+SELECT Delivery_id,DATE_FORMAT(Orders_date, '%d/%m/%Y') AS FORMATTED_DATE FROM Deliveries1;
+![image](https://github.com/user-attachments/assets/cc01e4c8-f05c-4c10-9f76-b96aeb6d9c72)
 
 
 
