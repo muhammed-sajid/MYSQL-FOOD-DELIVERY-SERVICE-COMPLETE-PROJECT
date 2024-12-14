@@ -266,6 +266,7 @@ SELECT * FROM TopSpendingcustomers;
 
 ## Write a stored procedure to update the delivery status
 DELIMITER $$
+
 CREATE PROCEDURE UpdateDeliveryStatus1(
     IN p_delivery_id VARCHAR(10))
 BEGIN
@@ -273,6 +274,7 @@ BEGIN
     SET Delivery_status = 'completed'
     WHERE Delivery_id = p_delivery_id;
 END $$
+
 DELIMITER ;
 
 CALL UpdateDeliveryStatus1('DS004');
@@ -281,6 +283,7 @@ CALL UpdateDeliveryStatus1('DS004');
 
 ## Write a stored procedure to update the delivery status
 DELIMITER $$
+
 CREATE PROCEDURE UpdateDeliveryStatus2(
     IN p_delivery_id VARCHAR(10))
 BEGIN
@@ -288,6 +291,7 @@ BEGIN
     SET Delivery_status = 'Pending'
     WHERE Delivery_id = p_delivery_id;
 END $$
+
 DELIMITER ;
 
 CALL UpdateDeliveryStatus2('DS005');
@@ -296,6 +300,7 @@ SELECT * FROM Deliveries ;
 ![image](https://github.com/user-attachments/assets/4fd3f088-d1f1-4e84-8d86-af242eada0ee)
 
 DELIMITER $$
+
 CREATE PROCEDURE UpdateDeliveris3(
      IN P_Delivery_id VARCHAR(20),
      IN P_Orders_id VARCHAR(20),
@@ -306,6 +311,7 @@ BEGIN
     INSERT INTO Deliveries (Delivery_id, Orders_id, agent_id, Delivery_date, Delivery_status)
     VALUES(P_Delivery_id, P_Orders_id,P_agent_id,P_Delivery_date,P_new_status);
 END $$
+
 DELIMITER ;   
 
 CALL UpdateDeliveris3('DS012','OR004', 'D002', '2024-09-11 22:00:00', 'completed');
@@ -318,6 +324,7 @@ SELECT SUM(Order_Item.Quantity * Menu_Item.Price)
 FROM Order_Item JOIN Menu_Item ON Order_Item.Item_Id = Menu_Item.Item_id WHERE Order_Item.Orders_id='OR012';
 
 DELIMITER $$
+
 CREATE TRIGGER UpdatetTotalPrice
 AFTER INSERT ON  Order_Item FOR EACH ROW 
 BEGIN
@@ -331,6 +338,7 @@ BEGIN
      SET Total_price = My_Total 
      WHERE Orders_id = New.Orders_id;
 END $$
+
 DELIMITER ; 
 
 
